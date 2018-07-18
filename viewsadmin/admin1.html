@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mainApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	
+	<meta name="viewport" content="width=device-width">
+	<script src="angular.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" href="style.css">
+	
+	<script src='products.js'></script>
+	<script src='category.js'></script>
+	<script src='cart.js'></script>
+	<script src='main.js'></script>
+	</head>
+
+<body ng-controller="mainCtrl" >
+<section id="site" ng-controller="productCtrl">
+	<div ng-controller="CategoryCtrl">
+	<header class="hf">
+		<h1>Товари</h1>
+		<section class="sort">
+			<article class="item-sort">
+				<label>Категорія</label>
+				<select ng-model="selectCategory" ng-change='loadProducts(selectCategory)'> 
+					<option ng-repeat="item in category">{{item.name}}</option>
+					
+				</select>
+			</article>
+			<article class="item-sort">
+				<label>Сортування</label>
+				<select ng-model='sortSelect' ng-change='sortMas(sortSelect)'>
+					<option>По спаданню</option>
+					<option>По зростанню</option>
+				</select>
+			</article>
+		</section>
+		<button class='btn btn-info' ng-click="showCart()"><i class="fas fa-shopping-cart"></i>  Корзина <span ng-show='cart.length>0' class="badge">{{cart.length}}</span></button>
+	</header>
+	<main ng-include="current.view" ng-init="ShowAdminProducts()">
+		
+	</main>
+	</div>
+	<footer class="hf">
+		footer
+	</footer>
+</section>
+</body>
+</html>
